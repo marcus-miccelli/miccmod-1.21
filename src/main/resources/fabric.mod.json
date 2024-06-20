@@ -9,7 +9,7 @@
 	],
 	"contact": {
 		"email": "marcusmicc@gmail.com",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"sources": "https://github.com/marcus-miccelli/miccmod-1.21"
 	},
 	"license": "MIT",
 	"icon": "assets/miccmod/icon.png",
