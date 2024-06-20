@@ -1,0 +1,40 @@
+{
+	"schemaVersion": 1,
+	"id": "miccmod",
+	"version": "${version}",
+	"name": "MiccMod",
+	"description": "Light-weight quality of life mod",
+	"authors": [
+		"Marcus Miccelli"
+	],
+	"contact": {
+		"email": "marcusmicc@gmail.com",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "MIT",
+	"icon": "assets/miccmod/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"net.marcus.miccmod.MiccMod"
+		],
+		"client": [
+			"net.marcus.miccmod.MiccModClient"
+		],
+		"fabric-datagen": [
+			"net.marcus.miccmod.MiccModDataGenerator"
+		]
+	},
+	"mixins": [
+		"miccmod.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.15.11",
+		"minecraft": "~1.21",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
