@@ -11,6 +11,7 @@ import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.render.RenderTickCounter;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.Vec3d;
+import org.jetbrains.annotations.Nullable;
 import org.lwjgl.glfw.GLFW;
 
 
@@ -24,7 +25,7 @@ public class MiccModClient implements ClientModInitializer {
 
     private static boolean zoomed = false;
     private static final int ZOOM_FOV = 30; // Adjust the FOV for zoom effect
-    private static int defaultFov; // Adjust as per default FOV
+    private static int defaultFov;
 
     private static final KeyBinding coordKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
             "key.miccmod.coordinates",
@@ -77,11 +78,34 @@ public class MiccModClient implements ClientModInitializer {
             return;
         }
         Vec3d pos = client.player.getPos();
-
-        String coordinates = String.format("X: %.3f, Y: %.3f, Z: %.3f", pos.x, pos.y, pos.z);
+        String coordinates = String.format("X: %.3f, Y: %.3f, Z: %.3f, %s", pos.x, pos.y, pos.z, getString(client.player.getYaw()  % 360));
         Text coordinatesText = Text.of(coordinates);
         TextRenderer textRenderer = client.textRenderer;
         int color = 0xFFFFFF; // White color
         context.drawText(textRenderer, coordinatesText, 2, 2, color, true);
+    }
+
+    @Nullable
+    private static String getString(float yaw) {
+        String direction = null;
+
+        if (157.5 < yaw && yaw < 202.5) {
+            direction = "-Z";
+        } else if (202.5 <= yaw && yaw <= 247.5) {
+            direction = "+X,-Z";
+        } else if (247.5 < yaw && yaw < 292.5) {
+            direction = "+X";
+        } else if (292.5 <= yaw && yaw <= 337.5) {
+            direction = "+X, +Z";
+        } else if (337.5 < yaw || yaw < 22.5) {
+            direction = "+Z";
+        } else if (22.5 <= yaw && yaw <= 67.5) {
+            direction = "-X, +Z";
+        } else if (67.5 < yaw && yaw < 112.5) {
+            direction = "-X";
+        } else if (112.5 < yaw && yaw <= 157.5) {
+            direction = "-X, -Z";
+        }
+        return direction;
     }
 }
