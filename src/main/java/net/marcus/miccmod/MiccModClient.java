@@ -24,7 +24,7 @@ public class MiccModClient implements ClientModInitializer {
     ));
 
     private static boolean zoomed = false;
-    private static final int ZOOM_FOV = 30; // Adjust the FOV for zoom effect
+    private static final int ZOOM_FOV = 30;
     private static int defaultFov;
 
     private static final KeyBinding coordKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
