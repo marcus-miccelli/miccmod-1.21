@@ -79,6 +79,7 @@ public class MiccModClient implements ClientModInitializer {
         }
         Vec3d pos = client.player.getPos();
         String coordinates = String.format("X: %.3f, Y: %.3f, Z: %.3f, %s", pos.x, pos.y, pos.z, getString(client.player.getYaw()  % 360));
+        MiccMod.LOGGER.info(String.format("%f", client.player.getYaw()  % 360));
         Text coordinatesText = Text.of(coordinates);
         TextRenderer textRenderer = client.textRenderer;
         int color = 0xFFFFFF; // White color
@@ -88,6 +89,9 @@ public class MiccModClient implements ClientModInitializer {
     @Nullable
     private static String getString(float yaw) {
         String direction = null;
+        if (yaw < 0){
+            yaw += 360;
+        }
 
         if (157.5 < yaw && yaw < 202.5) {
             direction = "-Z";
