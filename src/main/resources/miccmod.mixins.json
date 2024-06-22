@@ -1,9 +1,11 @@
 {
 	"required": true,
 	"package": "net.marcus.miccmod.mixin",
-	"compatibilityLevel": "JAVA_21",
 	"mixins": [
-		"ExampleMixin"
+		"OptionsScreenMixin"
+	],
+	"client": [
+		"OptionsScreenMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

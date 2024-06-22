@@ -24,7 +24,16 @@ public class MiccModClient implements ClientModInitializer {
     ));
 
     private static boolean zoomed = false;
-    private static final int ZOOM_FOV = 30;
+
+    public static int getZoomFov() {
+        return ZOOM_FOV;
+    }
+
+    public static void setZoomFov(int zoomFov) {
+        ZOOM_FOV = zoomFov;
+    }
+
+    private static int ZOOM_FOV = 30;
     private static int defaultFov;
 
     private static final KeyBinding coordKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
@@ -52,7 +61,7 @@ public class MiccModClient implements ClientModInitializer {
                     defaultFov = client.options.getFov().getValue();
                     client.options.getFov().setValue(ZOOM_FOV);
                     zoomed = true;
-                    MiccMod.LOGGER.info("Zoomed in");
+                    MiccMod.LOGGER.info(String.format("Zoomed in with FOV: %d", ZOOM_FOV));
                 }
             } else {
                 if (zoomed) {
@@ -79,7 +88,6 @@ public class MiccModClient implements ClientModInitializer {
         }
         Vec3d pos = client.player.getPos();
         String coordinates = String.format("X: %.3f, Y: %.3f, Z: %.3f, %s", pos.x, pos.y, pos.z, getString(client.player.getYaw()  % 360));
-        MiccMod.LOGGER.info(String.format("%f", client.player.getYaw()  % 360));
         Text coordinatesText = Text.of(coordinates);
         TextRenderer textRenderer = client.textRenderer;
         int color = 0xFFFFFF; // White color
